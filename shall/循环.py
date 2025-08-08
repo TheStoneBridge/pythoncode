@@ -54,7 +54,9 @@ for i in p:
 
 #TODO控制
 #break continue ---------------------pass
-
+#pass  表示什么都不做
+#continue 表示这次不算，继续后面的循环
+#break  代表不要循环了，停止
 for i in range(20):
     if i == 4:
         break
