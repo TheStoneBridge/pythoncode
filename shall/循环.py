@@ -68,3 +68,37 @@ for i in range(20):
         continue   #符合条件的这次不算在内，继续下一次循环
     print(i) 
     
+
+#激活码
+import random
+import string
+code = ''
+for i in range(8):
+    code += random.choice(string.ascii_letters)
+print(code)
+
+import random
+import string
+redeems = []
+for i in range(20):
+    code = ''
+    for i in range(8):
+        code += random.choice(string.ascii_letters)
+    redeems.append(code)
+print(redeems)
+
+
+
+import random
+import string
+redeems = []
+for i in range(20):
+    code = ''
+    for i in range(8):
+        code += random.choice(string.ascii_letters)
+    redeems.append(code)
+print('-'.join(redeems))
+
+print([i for i in range(20)])
+
+print('*'.join('<'+i+'>' for i in redeems))
