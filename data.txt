@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=1500">
+    <title>新发地-价格行情</title>
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/echarts.min.js"></script>
+    <link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/priceDetail.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all">
+    <link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/bootstrap-header.css" rel="stylesheet" type="text/css" media="all">
+    <link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/company.css" rel="stylesheet" type="text/css" media="all" />
+
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/jquery.min.js"></script>
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/bootstrap.min.js"></script>
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/move-top.js"></script>
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/easing.js"></script>
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/SmoothScroll.min.js"></script>
+    <!-- 分页 -->
+	<link rel="stylesheet" href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/index.css">
+
+    <!-- 日期选择 -->
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/prism.min.js"></script>
+    <link href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/prism-tomorrow.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://newlands-web.oss-cn-beijing.aliyuncs.com/css/zane-calendar.css">
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/es6/zane-calendar.js"></script>
+<!--    <script type="text/javascript" src="/js/daterangepicker/moment.min.js"></script>-->
+<!--    <script type="text/javascript" src="/js/daterangepicker/jquery.daterangepicker.min.js"></script>-->
+<!--    <link rel="stylesheet" href="../../js/daterangepicker/daterangepicker.css">-->
+    <!-- Slider script-->
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/responsiveslides.min.js"></script>
+    <script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/sliderWip.js"></script>
+
+    <link rel="stylesheet" href="/css/layui.css"  media="all">
+    <style>
+        #bbs .col-md-10 .outer .col-md-11{
+            padding-left: 40px;
+            padding-right: 40px;
+            width: 100%;
+            margin: 0px;
+        }
+        .block  {
+            height: 35px;
+            line-height: 35px;
+            padding-left: 10px;
+            width: 140px;
+            margin-left: 10px;
+            border: solid 1px #ddd;
+            background: #fff;
+            display: inline-block;
+        }
+        .formInput  {
+            height: 35px;
+            line-height: 35px;
+            padding-left: 10px;
+            width: 140px;
+            margin-left: 10px;
+            border: solid 1px #ddd;
+            background: #fff;
+        }
+        .formInput2  {
+            height: 32px;
+            line-height: 33px;
+            width: 81px;
+            border: solid 0px #ddd;
+            background: #fff;
+        }
+        .formSearchBtn  {
+            height: 35px;
+            line-height: 35px;
+            width: 60px;
+            margin-left: 20px;
+            border: solid 1px #ddd;
+            background: green;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .block .demo {
+            font-size: 16px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .block .demo > div:nth-child(2){
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Banner-->
+    <nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<!--小屏幕导航按钮和logo-->
+			<div class="navbar-header">
+				<img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/logo.png" style="margin-top: 20px;" class="img-responsive" alt="logo">
+			</div>
+			<!--小屏幕导航按钮和logo-->
+			<!--导航-->
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="./index.html" class="navactive scroll header-avtive">首页</a></li>
+					<li><a href="./companyProfile.html" class="scroll">公司简介</a></li>
+					<li><a href="./newsCenter.html" class="scroll"> 新闻中心</a></li>
+					<li><a href="./msgCenter" id="msgCenter" class="dropdown-toggle scroll" data-toggle="dropdown" role="button"
+							aria-haspopup="true" aria-expanded="false"><span
+								data-letters="Pages">信息中心</span><span class="caret"></span></a>
+						<ul class="nav dropdown-menu">
+							<li><a href="./priceDetail.html" class="scroll">价格行情</a></li>
+							<li><a href="./informationCenter.html" class="scroll">行情分析</a></li>
+						</ul> 
+					</li>
+					<li><a href="./merchantCenter.html" class="scroll">商户中心</a></li>
+					<li><a href="./productCenter.html" class="scroll">产品中心</a></li>
+				</ul>
+			</div>
+			<!--导航--> 
+			</div>
+	     <script>
+		$(document).ready(function () {
+            var price;
+			$(".nav li a").each(function () {
+				var $this = $(this);
+				var location=window.location.href; 
+				var s=location.indexOf("?");
+				var type = "";
+				if(s>=0){
+                    type = location.substring(s,location.length);
+				    location=location.substring(0,s);
+				}     
+				// if ($this[0].href == String(location)) {
+				// 	$this.addClass("header-avtive");
+				// }else{
+				// 	$this.removeClass("header-avtive");
+				// }   
+
+				if ($this[0].href == String(location) || ($this[0].href.indexOf('newsCenter.html') > 0 && String(location).indexOf("news-") > 0)
+					|| ($this[0].href.indexOf('informationCenter.html') > 0 && String(location).indexOf("infor-") > 0)) {
+				    if (String(location).indexOf("priceDetail.html") > 0
+						|| String(location).indexOf("informationCenter.html") > 0
+						|| String(location).indexOf("infor-") > 0) {
+                        $("#msgCenter").addClass("navactive scroll header-avtive");
+					} else {
+                        $this.addClass("navactive scroll header-avtive");
+					}
+				}else{
+					$this.removeClass("navactive scroll header-avtive");
+				}
+
+			});
+					
+
+		});
+		</script> 
+</nav>
+
+    <!-- 图片 -->
+    <div class="swiperimg" style="">
+        <img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/img/202201061130.png" style="width: 100%;" alt="">
+    </div>
+
+    <div id="bbs" class="about" >
+        <div class="container new" style="width: 1170px;">
+            <div class="col-md-10 col-xs-10 bbsRight selected"  style="width: 100%;">
+                <div class="outer" style="overflow: auto;height: auto;width: 100%;">
+                    <div class="col-md-1" style="width: 100%;"></div>
+                    <div class="col-md-11" style="width: 100%;">
+                        <div class="inner">
+                            <span class="right">价格行情</span>
+                        </div>
+                    </div>
+                    <input id="current" name="current" value="" type="hidden">
+                    <input id="limit" name="limit" value="" type="hidden">
+                    <input id="count" name="count" value="" type="hidden">
+                    <input id="pubDateStartTime" name="pubDateStartTime" value="" type="hidden">
+                    <input id="pubDateEndTime" name="pubDateEndTime" value="" type="hidden">
+                    <input id="prodPcatid" name="prodPcatid" value="" type="hidden">
+                    <input id="prodCatid" name="prodCatid" value="" type="hidden">
+                    <div class="col-md-11">
+                        <div class="price-class">
+                            <div class="class-title">
+                                <div>
+                                    <div class="class-title-text" style="margin: auto;">
+                                        时间：
+                                    </div>
+                                    <div class="block flex">
+                                        <div class="demo">
+<!--                                                <div class="input date" id="demo19">选择时间</div>-->
+                                            <input type="text" class="formInput2" id="demo19" placeholder="选择时间" readonly="readonly" />
+                                            <div class="">
+                                                <img class="date-img" src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/priceDetail/date.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="block flex">
+                                        <div class="demo">
+<!--                                                <div class="input date" id="demo20">选择时间</div>-->
+                                            <input type="text" class="formInput2" id="demo20" placeholder="选择时间" readonly="readonly" />
+                                            <div class="">
+                                                <img class="date-img" src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/priceDetail/date.png" alt="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="formInput" id="prodName" name="prodName" placeholder="品类"/>
+                                    <input type="button" class="formSearchBtn" id="search" onclick="send()" value="查询"/>
+                                    <input type="button" class="formSearchBtn" id="reset" onclick="reset()" value="重置"/>
+                                </div>
+                                <div class="mt-40">
+                                    <div class="class-title-text">
+                                        一级分类：
+                                    </div>
+                                    <ul id="sort1" style="margin-left: 10px;">
+                                        <li class="lis" ><a href="javascript:cat(1186)">蔬菜</a></li>
+                                        <li class="lis" ><a href="javascript:cat(1187)">水果</a></li>
+                                        <li class="lis" ><a href="javascript:cat(1189)">肉禽蛋</a></li>
+                                        <li class="lis" ><a href="javascript:cat(1190)">水产</a></li>
+                                        <li class="lis" ><a href="javascript:cat(1188)">粮油</a></li>
+                                        <li class="lis" ><a href="javascript:cat(1203)">豆制品</a></li>
+                                        <li class="lis" ><a href="javascript:cat(1204)">调料</a></li>
+                                    </ul>
+                                </div>
+                                <div class="mt-40">
+                                    <div class="class-title-text">
+                                        二级分类
+                                    </div>
+                                    <ul id="sort2" class="showFl" style="margin-left: 10px;">
+                                    </ul>
+                                </div>
+                                <!-- <input class="selectClassId" id="selectClassId" name="selectClassId" value="" type="hidden"> -->
+                                <div class="mt-40">
+                                    <div class="class-title-text">
+                                        已选：
+                                    </div>
+                                    <div id="selectedDiv" class="selectedSort"  style="margin-left: 10px;display: none;">
+                                        <b></b><i id="selectedSort"></i>
+                                        <img id="delVal" src="./img/del.png" style="top: -10px;right: -25px;position: relative;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-11" style="width: 100%;">
+                        <div class="tablebox" style="overflow: auto;height: auto;">
+                            <div class="tbl-body" style="position: relative;">
+                                <table border="0" cellspacing="0" cellpadding="0">
+                                    <thead>
+                                    <tr>
+                                        <th>一级分类</th>
+                                        <th>二级分类</th>
+                                        <th>品名</th>
+                                        <th>最低价</th>
+                                        <th>平均价</th>
+                                        <th>最高价</th>
+                                        <th>规格</th>
+                                        <th>产地</th>
+                                        <th>单位</th>
+                                        <th>发布日期</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="tableBody" class="ul">
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- 分页 -->
+                        <!--<div class="paging flex pd-50" style="margin: 20px 0;float: right;"></div>-->
+                        <div id="page" style="margin: 20px 0;float: right;"></div>
+                    </div>
+
+                    <table class="layui-hide" id="test"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/layui.js" charset="utf-8"></script>
+
+    <!-- 底部-->
+    <div class="yw-about-footer">
+
+	<div class="yw-constr">
+		<div class="yw-footerbox">
+			<div style="float:left">
+				<p class="yw-footer-copyright" style="margin-bottom:10px"><span style="font-size:20px;">联系我们</span></p>
+				<p class="yw-footer-copyright">QQ:8035129</p>
+				<p class="yw-footer-copyright">地址：北京市丰台区新发地</p></br>
+
+				<p class="yw-footer-copyright">© <script>document.write((new Date).getFullYear())</script>北京新发地农产品股份有限公司 <span class="br">版权所有</span></p>
+				<p class="yw-footer-copyrightmore"><a href="https://beian.miit.gov.cn/" style="color:#d1d2d4;" target="_blank">京ICP备15036961号</a>  北京新发地</p>
+			</div>
+
+	<div style="display: flex;justify-content:center">
+		<div style="float:left">
+			<img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/code1.jpg"  style="width:120px;height:120px" alt="">
+			<div class="iteams-text" style="text-align:center">公众号</div>
+		</div>
+		<div style="float:left; margin-left:20px">
+			<img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/code2.jpg"  style="width:120px;height:120px" alt="">
+			<div class="iteams-text" style="text-align:center">小程序</div>
+		</div>
+		<div style="float:left; margin-left:20px">
+			<img src="https://newlands-web.oss-cn-beijing.aliyuncs.com/images/index/code3.jpg"  style="width:120px;height:120px" alt="">
+			<div class="iteams-text" style="text-align:center">抖音</div>
+		</div>
+
+		<!--<div style="float:left; margin-left:20px">
+			<div class="iteams-text" style="text-align:center"><a href="https://beian.miit.gov.cn/" target="_blank">京ICP备15036961号</a>
+				<span class="pr20">北京新发地</span>
+			</div>-->
+		</div>
+		</div>
+	</div>
+  </div>
+</body>
+<script>
+    var pubDateStartTime = null; // 即可获取
+    if(pubDateStartTime){
+        $('#demo19').val(pubDateStartTime);
+    }
+    var pubDateEndTime = null; // 即可获取
+    if(pubDateEndTime){
+        $('#demo20').val(pubDateEndTime);
+    }
+    var myDate = new Date()
+
+    var firstLevel='';   //一级选择
+    var Level2='';   //二级选择
+    var val=''
+    $('#sort1>li').on('click', function () {
+        var index = $(this).index();
+        firstLevel = $(this).text();
+        $(this).addClass("active").siblings().removeClass("active");
+    })
+    $('#sort2>li>a').on('click', function () {
+        console.log(firstLevel)
+        console.log($(this).text())
+        // $(this).addClass("active").siblings().removeClass("active");
+        // val = firstLevel +'>'+ $(this).data("tit");
+        // $("#selectedSort").html(val);
+
+        $(this).parent().addClass("active").siblings().removeClass("active");
+        val = firstLevel +'>'+ $(this).text();
+        $("#selectedSort").html(val);
+    })
+
+    zaneDate({
+        elem: '#demo19',
+        format:'yyyy-MM-dd',
+        showtime: false,
+        haveBotBtns: false,
+        min: '2022-12-31',
+        begintime: null,
+        done:(fulltime,begintime,endtime)=>{
+        	$('#pubDateStartTime').val(fulltime);
+            $('#demo19').val(fulltime);
+			 send();
+        },
+
+    })
+    zaneDate({
+        elem: '#demo20',
+        format:'yyyy-MM-dd',
+        showtime: false,
+        haveBotBtns: false,
+        min: '2022-12-31',
+        begintime:null,
+        mounted:()=>{
+            // $('#pubDateEndTime').val("");
+        },
+        done:(fulltime,begintime,endtime)=>{
+        	$('#pubDateEndTime').val(fulltime);
+            $('#demo20').val(fulltime);
+			 send();
+        },
+    })
+
+</script>
+<!-- 分页 -->
+<script src="https://newlands-web.oss-cn-beijing.aliyuncs.com/js/index.js"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述 JS 路径需要改成你本地的 -->
+<script>
+    var laypage;
+    layui.use(['laypage', 'table', 'layer'], function(){
+        laypage = layui.laypage
+            ,layer = layui.layer;
+
+        send();
+    });
+</script>
+<script>
+    // $(function () {
+    //     send();
+    // });
+
+     function send(){
+         // $('#signupForm').submit();
+         //1201(进口水果)
+         if($("#prodCatid").val()==="1201"){
+             if($("#pubDateStartTime").val()!="") {
+                 if($("#pubDateStartTime").val()<"2023/01/01") {
+                     $("#pubDateStartTime").val("2023/01/01")
+                     $('#demo19').val("2023/01/01");
+                 }
+             }
+         }
+         if($('#demo19').val()===""){
+             $("#pubDateStartTime").val("2023/01/01")
+             $('#demo19').val("2023/01/01");
+         }
+
+         var param = {
+               "limit" : $("#limit").val(),
+               "current" : $("#current").val(),
+               "pubDateStartTime" : $("#pubDateStartTime").val(),
+               "pubDateEndTime" : $("#pubDateEndTime").val(),
+               "prodPcatid" : $("#prodPcatid").val(),
+               "prodCatid" : $("#prodCatid").val(),
+               "prodName" : $("#prodName").val()
+         }
+
+         $.post("/getPriceData.html", param, function (res) {
+             $("#count").val(res.count);
+             $("#limit").val(res.limit);
+             $("#current").val(res.current);
+
+             $("#tableBody").find("tr").remove();
+
+             for (var i = 0; i < res.list.length; i++) {
+                 var data = res.list[i];
+                 $("#tableBody").append("<tr>" +
+                     "<td>" + (data.prodCat == null ? "" : data.prodCat) + "</td>" +
+                     "<td>" + (data.prodPcat == null ? "" : data.prodPcat) + "</td>" +
+                     "<td>" + (data.prodName == null ? "" : data.prodName) + "</td>" +
+                     "<td>" + data.lowPrice + "</td>" +
+                     "<td>" + data.avgPrice + "</td>" +
+                     "<td>" + data.highPrice + "</td>" +
+                     "<td>" + data.specInfo + "</td>" +
+                     "<td>" + (data.place == null ? "" : data.place) + "</td>" +
+                     "<td>" + data.unitInfo + "</td>" +
+                     "<td>" + dateFormat(data.pubDate) + "</td>" +
+                     "</tr>");
+             }
+
+             //完整功能
+             laypage.render({
+                 elem: 'page'
+                 ,count: $("#count").val()
+                 ,limit: $("#limit").val()
+                 ,curr: $("#current").val()
+                 ,limits: [10, 20]   //每页条数的选择项
+                 ,theme: '#1A8C44'
+                 ,layout: ['count', 'prev', 'page', 'next', 'limit', 'refresh', 'skip']
+                 ,jump: function(obj){
+                     if (Number($('#current').val()) != Number(obj.curr) || Number($('#limit').val()) != Number(obj.limit)) {
+                         $('#current').val(obj.curr);
+                         $('#limit').val(obj.limit);
+                         send();
+                     }
+                 }
+             });
+         });
+     }
+
+     function dateFormat(date) {
+         if (date == null)
+             return "";
+
+         if (date.length > 10) {
+             return date.substring(0, 10);
+         } else {
+             return date;
+         }
+     }
+
+     function cat(prodCatid){
+         //alert(1);
+         var prodPcatid = $("#prodPcatId").val();
+         if (prodPcatid != prodCatid) {
+             $("#prodPcatid").val(prodCatid);
+
+             $("#selectedSort").html("");
+             $("#selectedDiv").hide();
+             $("#prodCatid").val("");
+             $("#sort2 li").each(function () {
+                 $(this).removeClass("active");
+             })
+
+             $.post("/getChildCat.html", {prodCatid:prodCatid}, function (res) {
+                 $("#sort2").find("li").remove();
+                 for (var i = 0; i < res.length; i++) {
+                     $("#sort2").append("<li class=\"lis show\" id=\"cat" + res[i].id + "\" data-tit=\"" + res[i].names + "\"><a id=\"cata" + res[i].id + "\" href=\"javascript:pcat('" + res[i].id + "')\" >" + res[i].names + "</a></li>");
+                 }
+             });
+         }
+         send();
+     }
+
+     function pcat(id){
+         //alert(2);
+         var this_ = $("#cat" + id);
+         $("#prodCatid").val(id);
+         this_.addClass("active").siblings().removeClass("active");
+         val = firstLevel +'>'+ $("#cata" + id).text();
+         $("#selectedDiv").show()
+         $("#selectedSort").html(val);
+         send();
+     }
+
+     $("#delVal").on("click", function () {
+         $("#selectedSort").html("");
+         $("#selectedDiv").hide();
+         $("#prodCatid").val("");
+         $("#prodPcatid").val("");
+         $("#sort1 li").each(function () {
+             $(this).removeClass("active");
+         })
+         $("#sort2 li").each(function () {
+             $(this).removeClass("active");
+         })
+         $("#sort2").find("li").remove();
+     })
+
+     $("#reset").on("click", function () {
+         $("#selectedSort").html("");
+         $("#selectedDiv").hide();
+         $("#prodCatid").val("");
+         $("#prodPcatid").val("");
+         $("#sort1 li").each(function () {
+             $(this).removeClass("active");
+         })
+         $("#sort2 li").each(function () {
+             $(this).removeClass("active");
+         })
+         $("#sort2").find("li").remove();
+         $('#demo19').val("");
+         $('#demo20').val("");
+         $('#pubDateStartTime').val("");
+         $('#pubDateEndTime').val("");
+         $('#prodName').val("");
+     })
+ </script>
+
+</html>

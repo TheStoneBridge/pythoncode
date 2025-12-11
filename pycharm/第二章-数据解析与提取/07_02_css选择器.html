@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #abc{   
+            color: rosybrown 
+        }  /*id选择器*/
+        li{
+            border: 1px solid black;
+        } /*标签选择器*/
+        .jay{
+            color: aqua;
+        } /*类选择器*/
+
+        div,span{  
+            background-color: palegreen;
+        }
+       /* ul 
+       li{  子选择器 空格表示所有后代 子子孙孙
+            list-style: none;
+        }
+        */
+        ul > li{  /* 子选择器 > 表示所有直接子元素*/
+            list-style: none;
+        }
+
+        h1 + h2{  /* 相邻选择器   + 表示相邻元素*/
+            color: red;
+        }
+        a[target]{
+            color: blue;
+        }
+        a[target="_blank"]{ /* 属性选择器 */
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!--
+
+    <ul> 
+        <li>1</li>
+        <li id="abc">2</li>
+        <li>3</li>
+        <li>4</li>
+        <ol>
+            <li>5</li>  
+            <li>6</li>
+        </ol>
+    </ul>
+    <ol>
+        <li>我要验牌</li>
+        <li>你只能给我擦皮鞋</li>
+        <li>(法国口音)</li>        
+    </ol>
+    <div class="jay">这是div</div>
+    <span class="jay">这是span</span>
+
+    <h1>我要验牌</h1>
+    <h2>你只能给我擦皮鞋</h2>
+    <h1>(法国口音)</h1>
+    -->
+    <a href="#" target="_blank">我是blank</a>
+    <a href="#" target="_self">我是self</a>
+    <a href="#">我是飞舞</a>
+</body>
+</html>
