@@ -1,8 +1,7 @@
 import requests
 from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service #在 Selenium 中，from selenium.webdriver.chrome.service import Service 的作用是导入用于管理 Chrome 驱动服务的 Service 类。  其主要功能是：负责启动和控制 Chrome 浏览器驱动程序（chromedriver）的进程  可以配置驱动程序的路径、日志级别等参数  在代码中通常与 ChromeDriverManager 配合使用，用于初始化 Chrome 浏览器实例
+from webdriver_manager.chrome import ChromeDriverManager  #ChromeDriverManager 的主要功能是自动管理 Chrome 浏览器驱动（chromedriver） 它可以：自动检测当前系统中安装的 Chrome 浏览器版本  自动下载与当前 Chrome 版本匹配的 chromedriver 自动处理驱动的路径配置，无需手动下载和设置驱动路径  在代码中，它被用于初始化 Chrome 浏览器驱动
 import time
 from bs4 import BeautifulSoup
 import os
@@ -38,7 +37,7 @@ with open("bizhihui_dynamic.txt", "w", encoding="utf-8") as f:
     f.write(page_source)
     print("动态内容保存成功")
 main_page = BeautifulSoup(page_source, 'html.parser')
-a_list  = main_page.find_all("a", class_="item-img")
+a_list  = main_page.find_all("a", attrs={"class":"item-img"})
 
 for item in a_list:
     href = item.get("href")   #获得子页面的href
@@ -46,7 +45,7 @@ for item in a_list:
     driver.get(href)
     page_source = driver.page_source
     child_page = BeautifulSoup(page_source, 'html.parser')
-    div = child_page.find("div", class_="article-content")
+    div = child_page.find("div", attrs={"class":"article-content"})
     img_src = div.find("img").get("src")
     href1 = img_src.split("-")[0]
     print(href1)
