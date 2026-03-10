@@ -1,0 +1,13 @@
+#导入PyMySQL模块
+import pymysql
+# 调用connect()函数生产connection连接对象
+db =  pymysql.connect(host='localhost',user = 'root',password='host',database='mrsoft')
+#调用cursor()方法获取cursor对象
+cursor = db.cursor()
+#执行SQL语句
+cursor.execute('select version()')
+data = cursor.fetchone()
+print('Database version:',data)
+#关闭连接
+cursor.close()
+db.close()
