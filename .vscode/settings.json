@@ -1,3 +1,10 @@
 {
-  "editor.maxTokenizationLineLength": 1e21
+  "editor.maxTokenizationLineLength": 1e21,
+  "python-envs.pythonProjects": [
+    {
+      "path": "pycharm/07_第七章_MongoDB/14_文章评论的基本增删改查",
+      "envManager": "ms-python.python:venv",
+      "packageManager": "ms-python.python:pip"
+    }
+  ]
 }
